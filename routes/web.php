@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
-    return view('app');
+    return view('dashboard');
 });
 
 Route::get('/login', function () {
