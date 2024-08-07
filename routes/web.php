@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -20,3 +21,9 @@ Route::get('/login', function () {
         Route::get('/member', [AuthController::class, 'showMemberPage'])->name('member');
         Route::get('/admin', [AuthController::class, 'showAdminPage'])->name('admin');
     });
+
+    Route::get('/register', function () {
+        return view('register');
+    })->name('register');
+
+    Route::post('/register', [RegisterController::class, 'register']);

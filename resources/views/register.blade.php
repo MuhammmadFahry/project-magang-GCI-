@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Register Page</title>
     <style>
         body {
             margin: 0;
@@ -14,7 +14,7 @@
             background-size: cover;
         }
 
-        .login-container {
+        .register-container {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,7 +22,7 @@
             background: rgba(0, 0, 0, 0.5); /* Optional: adds a dark overlay for better readability */
         }
 
-        .login-box {
+        .register-box {
             background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 8px;
@@ -31,7 +31,7 @@
             width: 300px;
         }
 
-        .login-box h2 {
+        .register-box h2 {
             margin-bottom: 20px;
             color: #333;
         }
@@ -71,16 +71,6 @@
             font-size: 12px;
         }
 
-        .input-box .toggle-password {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            font-size: 18px;
-            color: #333;
-        }
-
         button {
             width: 100%;
             padding: 10px;
@@ -97,7 +87,7 @@
             background: #0288d1;
         }
 
-        .register-link {
+        .login-link {
             display: block;
             margin-top: 15px;
             color: #03a9f4;
@@ -105,43 +95,42 @@
             font-size: 14px;
         }
 
-        .register-link:hover {
+        .login-link:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <h2>Login</h2>
-            <form method="POST" action="{{ route('login') }}">
+    <div class="register-container">
+        <div class="register-box">
+            <h2>Register</h2>
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="input-box">
-                    <input type="text" name="username" required>
+                    <input type="text" name="username" value="{{ old('username') }}" required>
                     <label>Username</label>
                 </div>
+                @error('username')
+                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                @enderror
+
                 <div class="input-box">
                     <input type="password" name="password" id="password" required>
                     <label>Password</label>
-                    <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
                 </div>
-                <button type="submit">Login</button>
+                @error('password')
+                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                @enderror
+
+                <div class="input-box">
+                    <input type="password" name="password_confirmation" id="password-confirm" required>
+                    <label>Confirm Password</label>
+                </div>
+
+                <button type="submit">Register</button>
             </form>
-            <a href="{{ route('register') }}" class="register-link">Buat Akun</a>
+            <a href="{{ route('login') }}" class="login-link">Already have an account? Login</a>
         </div>
     </div>
-    <script>
-        function togglePasswordVisibility() {
-            var passwordInput = document.getElementById("password");
-            var passwordToggle = document.querySelector(".toggle-password");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                passwordToggle.textContent = "🙈";
-            } else {
-                passwordInput.type = "password";
-                passwordToggle.textContent = "👁️";
-            }
-        }
-    </script>
 </body>
 </html>
