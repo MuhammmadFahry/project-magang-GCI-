@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html class="scroll-smooth">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +14,16 @@
       background: rgba(255, 255, 255, 0.5); /* White background with 50% opacity */
       backdrop-filter: blur(10px); /* Blur effect */
     }
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .nav-link.active {
+      background: rgba(255, 255, 255, 0.2);
+    }
   </style>
 </head>
 <body>
-  <nav class="bg-gray-800 bg-opacity-90">
+  <nav class="bg-gray-800 bg-opacity-90 shadow-lg">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -35,14 +41,13 @@
         </div>
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex flex-shrink-0 items-center">
-            <img class="h-8 w-auto" src="{{asset('foto/wungpuyuh.png')}}" alt="Perpustakaan garuda">
+            <img class="h-8 w-auto" src="/foto/wungpuyuh.png" alt="Library Logo">
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
-              <a href="#" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Dashboard</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
+              <a href="#" class="nav-link rounded-md px-3 py-2 text-sm font-medium text-white" aria-current="page">Home</a>
+              <a href="#library" class="nav-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">Library</a>
+              <a href="#team" class="nav-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">Team</a>
             </div>
           </div>
         </div>
@@ -54,94 +59,130 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
             </svg>
           </button>
-
-          <!-- Profile dropdown -->
-          <div class="relative ml-3">
-            <div>
-              <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                <span class="absolute -inset-1.5"></span>
-                <span class="sr-only">Open user menu</span>
-                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-              </button>
-            </div>
-
-            <div id="user-menu" class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
-            </div>
+          <!-- Login button -->
+          <div class="ml-3 relative">
+            <a href="{{ route('login') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
           </div>
-        </div>
-        <!-- Login button -->
-        <div class="ml-3 relative">
-          <a href="{{ route('login') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
-        </div>
+        </div>  
       </div>
     </div>
 
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="sm:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pb-3 pt-2">
-        <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
-        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
-        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
-        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
-        <a href="{{ route('login') }}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
+        <a href="#" class="block nav-link rounded-md px-3 py-2 text-base font-medium text-white" aria-current="page">Home</a>
+        <a href="#library" class="block nav-link rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Library</a>
+        <a href="#team" class="block nav-link rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Team</a>
+        <a href="{{ route('login') }}" class="block nav-link rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Login</a>
       </div>
     </div>
   </nav>
-  
+
   <div class="container mx-auto px-4 py-6">
-    <h1 class="text-3xl font-bold text-white">Dashboard</h1>
-    <div id="content" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <!-- Dashboard content -->
-      <div class="content-bg p-6 rounded-lg shadow-lg">
-        <h2 class="text-xl font-bold mb-2">Buku Terpopuler</h2>
+    <!-- Home Content -->
+    <div id="home" class="content-bg p-6 rounded-lg shadow-lg">
+      <h1 class="text-3xl font-bold text-gray-800">Welcome to Perpustakaan Garuda</h1>
+      <p class="text-gray-700 mt-4">Perpustakaan Garuda adalah sumber pengetahuan yang luas dengan koleksi buku yang beragam dan fasilitas modern untuk semua pengunjung. Kami berdedikasi untuk menyediakan akses informasi dan pengetahuan untuk semua kalangan.</p>
+    </div>
+    
+    <!-- Library Content -->
+    <div id="library" class="mt-6">
+      <h1 class="text-3xl font-bold text-white">Library</h1>
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="content-bg p-6 rounded-lg shadow-lg">
+          <h2 class="text-xl font-bold mb-2">Buku Terpopuler</h2>
+          <ul class="text-gray-700 list-disc pl-5">
+            <li>Book Title 1</li>
+            <li>Book Title 2</li>
+            <li>Book Title 3</li>
+          </ul>
+        </div>
+        <div class="content-bg p-6 rounded-lg shadow-lg">
+          <h2 class="text-xl font-bold mb-2">Buku Baru</h2>
+          <ul class="text-gray-700 list-disc pl-5">
+            <li>Book Title 4</li>
+            <li>Book Title 5</li>
+            <li>Book Title 6</li>
+          </ul>
+        </div>
+        <div class="content-bg p-6 rounded-lg shadow-lg">
+          <h2 class="text-xl font-bold mb-2">Event Mendatang</h2>
+          <p class="text-gray-700">Buku Baru Akan Datang: 25 Agustus 2024</p>
+        </div>
+      </div>
+      <div class="mt-6 content-bg p-6 rounded-lg shadow-lg">
+        <h2 class="text-xl font-bold mb-2">Daftar Semua Buku</h2>
         <ul class="text-gray-700 list-disc pl-5">
           <li>Book Title 1</li>
           <li>Book Title 2</li>
           <li>Book Title 3</li>
-        </ul>
-      </div>
-      <div class="content-bg p-6 rounded-lg shadow-lg">
-        <h2 class="text-xl font-bold mb-2">Buku Baru</h2>
-        <ul class="text-gray-700 list-disc pl-5">
           <li>Book Title 4</li>
           <li>Book Title 5</li>
           <li>Book Title 6</li>
+          <li>Book Title 7</li>
+          <li>Book Title 8</li>
+          <li>Book Title 9</li>
         </ul>
       </div>
-      <div class="content-bg p-6 rounded-lg shadow-lg">
-        <h2 class="text-xl font-bold mb-2">Event Mendatang</h2>
-        <p class="text-gray-700">Buku Baru Akan Datang: 25 Agustus 2024</p>
+    </div>
+
+    <!-- Team Content -->
+    <div id="team" class="mt-6 ">
+      <h1 class="text-3xl font-bold text-white">Team</h1>
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="content-bg p-6 rounded-lg shadow-lg">
+          <img src="https://www.example.com/librarian1.jpg" alt="Librarian 1" class="w-full h-48 object-cover rounded-lg">
+          <h2 class="text-xl font-bold mt-2">Librarian 1</h2>
+          <p class="text-gray-700">Deskripsi tentang pustakawan 1.</p>
+        </div>
+        <div class="content-bg p-6 rounded-lg shadow-lg">
+          <img src="https://www.example.com/librarian2.jpg" alt="Librarian 2" class="w-full h-48 object-cover rounded-lg">
+          <h2 class="text-xl font-bold mt-2">Librarian 2</h2>
+          <p class="text-gray-700">Deskripsi tentang pustakawan 2.</p>
+        </div>
+        <div class="content-bg p-6 rounded-lg shadow-lg">
+          <img src="https://www.example.com/librarian3.jpg" alt="Librarian 3" class="w-full h-48 object-cover rounded-lg">
+          <h2 class="text-xl font-bold mt-2">Librarian 3</h2>
+          <p class="text-gray-700">Deskripsi tentang pustakawan 3.</p>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      const homeLink = document.querySelector('a[href="#home"]');
+      const libraryLink = document.querySelector('a[href="#library"]');
+      const teamLink = document.querySelector('a[href="#team"]');
+      const homeContent = document.getElementById('home');
+      const libraryContent = document.getElementById('library');
+      const teamContent = document.getElementById('team');
+
+      homeLink.addEventListener('click', function() {
+        homeContent.classList.remove('hidden');
+        libraryContent.classList.add('hidden');
+        teamContent.classList.add('hidden');
+      });
+
+      libraryLink.addEventListener('click', function() {
+        homeContent.classList.add('hidden');
+        libraryContent.classList.remove('hidden');
+        teamContent.classList.add('hidden');
+      });
+
+      teamLink.addEventListener('click', function() {
+        homeContent.classList.add('hidden');
+        libraryContent.classList.add('hidden');
+        teamContent.classList.remove('hidden');
+      });
+
       const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
       const mobileMenu = document.getElementById('mobile-menu');
-      const userMenuButton = document.getElementById('user-menu-button');
-      const userMenu = document.getElementById('user-menu');
 
       mobileMenuButton.addEventListener('click', function() {
         const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
         mobileMenuButton.setAttribute('aria-expanded', !expanded);
         mobileMenu.classList.toggle('hidden');
-      });
-
-      userMenuButton.addEventListener('click', function() {
-        const expanded = userMenuButton.getAttribute('aria-expanded') === 'true' || false;
-        userMenuButton.setAttribute('aria-expanded', !expanded);
-        userMenu.classList.toggle('hidden');
-      });
-
-      document.addEventListener('click', function(event) {
-        if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
-          userMenu.classList.add('hidden');
-          userMenuButton.setAttribute('aria-expanded', false);
-        }
       });
     });
   </script>
