@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Page</title>
+    <title>@yield('title', 'Member Page')</title>
     <style>
+        /* Include the styles from your initial HTML code */
         body {
             font-family: Arial, sans-serif;
             background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20230526/pngtree-an-old-bookcase-in-a-library-image_2642908.jpg');
@@ -52,22 +53,19 @@
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="nav-left">
-            <a href="#">Home</a>
-            <a href="#">Peminjaman buku</a>
-            <a href="#">pengembalian buku</a>
-        </div>
-        <div class="nav-right">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="logout-button">Logout</button>
-            </form>
-        </div>
+<di class="navbar">
+    <div class="nav-left">
+        <a href="{{ route('home') }}">Home</a>
+        <a href="{{ route('peminjaman') }}">Peminjaman Buku</a>
+        <a href="{{ route('pengembalian') }}">Pengembalian Buku</a>
+    </div>
+    <div class="nav-right">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
     </div>
     
-    <div class="content">
-        <h1>Welcome, Member!</h1>
-    </div>
+    @yield('content')
 </body>
 </html>
